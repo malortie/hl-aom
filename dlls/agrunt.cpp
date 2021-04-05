@@ -909,12 +909,6 @@ BOOL CAGrunt :: FCanCheckAttacks ( void )
 //=========================================================
 BOOL CAGrunt :: CheckMeleeAttack1 ( float flDot, float flDist )
 {
-#if !defined ( AOM_DLL )
-	if ( HasConditions ( bits_COND_SEE_ENEMY ) && flDist <= AGRUNT_MELEE_DIST && flDot >= 0.6 && m_hEnemy != NULL )
-	{
-		return TRUE;
-	}
-#endif
 	return FALSE;
 }
 
@@ -1112,13 +1106,6 @@ Schedule_t *CAGrunt :: GetSchedule ( void )
 			{
 				return GetScheduleOfType ( SCHED_RANGE_ATTACK1 );
 			}
-
-#if !defined ( AOM_DLL )
-			if ( OccupySlot ( bits_SLOT_AGRUNT_CHASE ) )
-			{
-				return GetScheduleOfType ( SCHED_CHASE_ENEMY );
-			}
-#endif
 
 			return GetScheduleOfType ( SCHED_STANDOFF );
 		}
